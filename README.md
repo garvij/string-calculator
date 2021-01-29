@@ -1,4 +1,4 @@
-#String Calculator
+# String Calculator
 Implementation of TDD Kata from https://osherove.com/tdd-kata-1
 
 ### Before you start:
