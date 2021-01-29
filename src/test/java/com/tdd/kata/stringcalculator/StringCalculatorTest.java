@@ -1,10 +1,14 @@
 package com.tdd.kata.stringcalculator;
 
 
+import com.tdd.kata.stringcalculator.exception.NegativeNumberArgumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringCalculatorTest {
 
@@ -96,5 +100,17 @@ class StringCalculatorTest {
         assertEquals(10, stringCalculator.add("//,\n2,3,5"));
     }
 
+    /**
+     * Calling Add with a negative number will throw an exception “negatives not allowed” -
+     * and the negative that was passed.
+     * if there are multiple negatives, show all of them in the exception message.
+     */
+    @Test
+    void whenNegativeNumbers_shouldThrowException() {
+        Exception exception = assertThrows(NegativeNumberArgumentException.class,
+                () -> stringCalculator.add("//;\n5;-5"));
+        System.out.println(exception.getMessage());
+        assertEquals("Negative numbers not allowed: -5", exception.getMessage());
+    }
 
 }
