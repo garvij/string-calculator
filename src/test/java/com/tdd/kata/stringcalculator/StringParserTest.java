@@ -29,5 +29,15 @@ class StringParserTest {
         assertEquals(Arrays.asList(1, 2, 3), stringParser.parse("//[***]\n1***2***3"));
     }
 
+    @Test
+    void multiple_delimiter_parsing() {
+        assertEquals(Arrays.asList(1, 2, 3), stringParser.parse("//[*][%]\n1*2%3"));
+    }
+
+    @Test
+    void multiple_delimiter_and_unlimitedLength_parsing() {
+        assertEquals(Arrays.asList(1, 2, 3), stringParser.parse("//[**][%%]\n1**2%%3"));
+    }
+
 
 }

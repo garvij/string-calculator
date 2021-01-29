@@ -29,11 +29,17 @@ public class StringParser {
 
     private String getDelimiter(String numbers) {
         int delimiterStringEndIndex = numbers.indexOf("\n");
+        if (numbers.contains("[")) {
+            return Arrays.stream(numbers.substring(3, delimiterStringEndIndex - 1)
+                    .split("]\\["))
+                    .map(str -> "\\Q" + str + "\\E")
+                    .collect(Collectors.joining("|"));
+        }
         String unescapedDelimiterStr = numbers.substring(0, delimiterStringEndIndex)
                 .replace("//", "")
                 .replace("[", "")
                 .replace("]", "");
-        return  "\\Q" + unescapedDelimiterStr + "\\E";
+        return "\\Q" + unescapedDelimiterStr + "\\E";
     }
 
     private boolean delimitersProvided(String numbers) {
