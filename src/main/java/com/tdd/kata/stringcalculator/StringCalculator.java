@@ -1,15 +1,15 @@
 package com.tdd.kata.stringcalculator;
 
-import java.util.Arrays;
-
 public class StringCalculator {
 
-    public int add(String numbers){
+    private final StringParser stringParser = new StringParser();
+
+    public int add(String numbers) {
         if (numbers.isEmpty()) {
             return 0;
         }
-        return Arrays.stream(numbers.split("[,\n]"))
-                .map(Integer::parseInt)
+        return stringParser.parse(numbers)
+                .stream()
                 .reduce(0, Integer::sum);
     }
 
