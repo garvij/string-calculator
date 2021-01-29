@@ -51,8 +51,9 @@ class StringCalculatorTest {
     }
 
     /**
-     * 2. Allow the Add method to handle an unknown amount of numbers
+     * Allow the Add method to handle an unknown amount of numbers
      */
+
     @Test
     void return_7() {
         assertEquals(7, stringCalculator.add("2,3,2"));
