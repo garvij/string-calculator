@@ -36,7 +36,6 @@ class StringCalculatorTest {
         assertEquals(0, stringCalculator.add(""));
     }
 
-    // TODO : fix for below tests
     @Test
     void return2() {
         stringCalculator = new StringCalculator();

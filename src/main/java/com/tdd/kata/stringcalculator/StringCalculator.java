@@ -1,8 +1,16 @@
 package com.tdd.kata.stringcalculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
 
     public int add(String numbers){
-        return 0;
+        if (numbers.isEmpty()) {
+            return 0;
+        }
+        return Arrays.stream(numbers.split(","))
+                .map(Integer::parseInt)
+                .reduce(0, Integer::sum);
     }
+
 }
