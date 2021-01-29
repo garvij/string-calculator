@@ -121,4 +121,13 @@ class StringCalculatorTest {
         assertEquals(1000, stringCalculator.add("1000,2000,3000"));
     }
 
+    /**
+     * Delimiters can be of any length with the following
+     * format: “//[delimiter]\n” for example: “//[***]\n1***2***3” should return 6
+     */
+    @Test
+    void unlimitedDelimiterLength() {
+        assertEquals(6, stringCalculator.add("//[***]\n1***2***3"));
+    }
+
 }

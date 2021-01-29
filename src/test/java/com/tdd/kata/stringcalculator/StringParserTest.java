@@ -24,5 +24,10 @@ class StringParserTest {
         assertEquals(Arrays.asList(2, 3, 5), stringParser.parse("//,\n2,3,5"));
     }
 
+    @Test
+    void unlimited_delimiter_parsing() {
+        assertEquals(Arrays.asList(1, 2, 3), stringParser.parse("//[***]\n1***2***3"));
+    }
+
 
 }

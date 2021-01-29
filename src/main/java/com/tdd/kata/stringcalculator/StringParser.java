@@ -14,14 +14,26 @@ public class StringParser {
 
     public List<Integer> parse(String numbers) {
         if (delimitersProvided(numbers)) {
-            int startIndex = numbers.indexOf("//");
-            int endIndex = numbers.lastIndexOf("\n");
-            delimiter = numbers.substring(startIndex + 2, endIndex);
-            numbers = numbers.substring(endIndex + 1);
+            delimiter = getDelimiter(numbers);
+            numbers = removeDelimiterLine(numbers);
         }
         return Arrays.stream(numbers.split(delimiter))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private String removeDelimiterLine(String numbers) {
+        int delimiterStringEndIndex = numbers.indexOf("\n");
+        return numbers.substring(delimiterStringEndIndex + 1);
+    }
+
+    private String getDelimiter(String numbers) {
+        int delimiterStringEndIndex = numbers.indexOf("\n");
+        String unescapedDelimiterStr = numbers.substring(0, delimiterStringEndIndex)
+                .replace("//", "")
+                .replace("[", "")
+                .replace("]", "");
+        return  "\\Q" + unescapedDelimiterStr + "\\E";
     }
 
     private boolean delimitersProvided(String numbers) {
